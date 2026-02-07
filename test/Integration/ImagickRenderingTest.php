@@ -102,6 +102,10 @@ final class ImagickRenderingTest extends TestCase
         $tempName1 = tempnam(sys_get_temp_dir(), 'test') . '.png';
         $writer1->writeFile('rotation without eye color', $tempName1);
 
+        if (!method_exists($this, 'assertMatchesImageSnapshot')) {
+            $this->markTestSkipped('assertMatchesImageSnapshot is not available (requires spatie/pixelmatch-php)');
+        }
+
         $this->assertMatchesImageSnapshot($tempName1);
         unlink($tempName1);
 
@@ -120,6 +124,10 @@ final class ImagickRenderingTest extends TestCase
         $writer2 = new Writer($renderer2);
         $tempName2 = tempnam(sys_get_temp_dir(), 'test') . '.png';
         $writer2->writeFile('rotation with eye color', $tempName2);
+
+        if (!method_exists($this, 'assertMatchesImageSnapshot')) {
+            $this->markTestSkipped('assertMatchesImageSnapshot is not available (requires spatie/pixelmatch-php)');
+        }
 
         $this->assertMatchesImageSnapshot($tempName2);
         unlink($tempName2);
