@@ -140,7 +140,7 @@ final class GDLibRenderer implements RendererInterface
                     ($this->margin + $x) * $pointInPx,
                     ($this->margin + $y + 1) * $pointInPx,
                 ]);
-                imagefilledpolygon($this->image, $points, $color);
+                imagefilledpolygon($this->image, $points, 4, $color);
             }
         }
     }
@@ -173,9 +173,9 @@ final class GDLibRenderer implements RendererInterface
                 ]);
 
                 if ($y > 1 && $y < 5 && $x > 1 && $x < 5) {
-                    imagefilledpolygon($this->image, $points, $internalColor);
+                    imagefilledpolygon($this->image, $points, 4, $internalColor);
                 } else {
-                    imagefilledpolygon($this->image, $points, $externalColor);
+                    imagefilledpolygon($this->image, $points, 4, $externalColor);
                 }
             }
         }

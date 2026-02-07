@@ -60,5 +60,10 @@
             "/test",
             "/phpunit.xml.dist"
         ]
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs",
+        "fix-style": "phpcbf"
     }
 }
