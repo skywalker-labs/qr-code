@@ -39,6 +39,10 @@ final class ImagickRenderingTest extends TestCase
         $tempName = tempnam(sys_get_temp_dir(), 'test') . '.png';
         $writer->writeFile('Hello World!', $tempName);
 
+        if (!method_exists($this, 'assertMatchesImageSnapshot')) {
+            $this->markTestSkipped('assertMatchesImageSnapshot is not available (requires spatie/pixelmatch-php)');
+        }
+
         $this->assertMatchesImageSnapshot($tempName);
         unlink($tempName);
     }
@@ -67,6 +71,10 @@ final class ImagickRenderingTest extends TestCase
         $writer = new Writer($renderer);
         $tempName = tempnam(sys_get_temp_dir(), 'test') . '.png';
         $writer->writeFile('https://apiroad.net/very-long-url', $tempName);
+
+        if (!method_exists($this, 'assertMatchesImageSnapshot')) {
+            $this->markTestSkipped('assertMatchesImageSnapshot is not available (requires spatie/pixelmatch-php)');
+        }
 
         $this->assertMatchesImageSnapshot($tempName);
         unlink($tempName);

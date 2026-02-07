@@ -33,7 +33,9 @@ class VersionTest extends TestCase
         ];
     }
 
-    #[DataProvider('versions')]
+    /**
+     * @dataProvider versions
+     */
     public function testVersionForNumber(int $versionNumber, int $dimension): void
     {
         $version = Version::getVersionForNumber($versionNumber);
@@ -54,7 +56,9 @@ class VersionTest extends TestCase
         $this->assertNotNull($version->buildFunctionPattern());
     }
 
-    #[DataProvider('versions')]
+    /**
+     * @dataProvider versions
+     */
     public function testGetProvisionalVersionForDimension(int $versionNumber, int $dimension): void
     {
         $this->assertSame(
