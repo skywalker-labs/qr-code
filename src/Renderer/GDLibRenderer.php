@@ -13,11 +13,13 @@ use Skywalker\QrCode\Renderer\Color\Alpha;
 use Skywalker\QrCode\Renderer\Color\ColorInterface;
 use Skywalker\QrCode\Renderer\RendererStyle\EyeFill;
 use Skywalker\QrCode\Renderer\RendererStyle\Fill;
-use GdImage;
 
 final class GDLibRenderer implements RendererInterface
 {
-    private ?GdImage $image;
+    /**
+     * @var resource|\GdImage|null
+     */
+    private $image;
 
     /**
      * @var array<string, int>
@@ -273,4 +275,3 @@ final class GDLibRenderer implements RendererInterface
         return $this->colors[$colorKey];
     }
 }
-
