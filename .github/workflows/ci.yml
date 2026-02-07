@@ -27,7 +27,11 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: composer update --no-interaction --no-progress --prefer-dist --ignore-platform-req=php
+        run: |
+          if [ "${{ matrix.php }}" == "7.4" ] || [ "${{ matrix.php }}" == "8.0" ]; then
+            composer remove --dev spatie/pixelmatch-php --no-update
+          fi
+          composer update --no-interaction --no-progress --prefer-dist
 
       - name: Install Node.js dependencies
         run: npm install
