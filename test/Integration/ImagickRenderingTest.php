@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace Skywalker\QrCodeTest\Integration;
 
@@ -15,18 +16,20 @@ use Skywalker\QrCode\Renderer\RendererStyle\Gradient;
 use Skywalker\QrCode\Renderer\RendererStyle\GradientType;
 use Skywalker\QrCode\Renderer\RendererStyle\RendererStyle;
 use Skywalker\QrCode\Writer;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
-#[Group('integration')]
+/**
+ * @group integration
+ */
 final class ImagickRenderingTest extends TestCase
 {
     use MatchesSnapshots;
 
-    #[RequiresPhpExtension('imagick')]
-    public function testGenericQrCode() : void
+    /**
+     * @requires extension imagick
+     */
+    public function testGenericQrCode(): void
     {
         $renderer = new ImageRenderer(
             new RendererStyle(400),
@@ -40,8 +43,10 @@ final class ImagickRenderingTest extends TestCase
         unlink($tempName);
     }
 
-    #[RequiresPhpExtension('imagick')]
-    public function testIssue79() : void
+    /**
+     * @requires extension imagick
+     */
+    public function testIssue79(): void
     {
         $eye = SquareEye::instance();
         $squareModule = SquareModule::instance();
@@ -67,8 +72,10 @@ final class ImagickRenderingTest extends TestCase
         unlink($tempName);
     }
 
-    #[RequiresPhpExtension('imagick')]
-    public function testIssue105() : void
+    /**
+     * @requires extension imagick
+     */
+    public function testIssue105(): void
     {
         $squareModule = SquareModule::instance();
         $pointyEye = PointyEye::instance();
@@ -110,4 +117,3 @@ final class ImagickRenderingTest extends TestCase
         unlink($tempName2);
     }
 }
-

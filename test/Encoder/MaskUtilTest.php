@@ -1,16 +1,16 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace Skywalker\QrCodeTest\Encoder;
 
 use Skywalker\QrCode\Encoder\ByteMatrix;
 use Skywalker\QrCode\Encoder\MaskUtil;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class MaskUtilTest extends TestCase
 {
-    public static function dataMaskBits() : array
+    public static function dataMaskBits(): array
     {
         return [
             [0, [
@@ -83,8 +83,7 @@ class MaskUtilTest extends TestCase
     /**
      * @dataProvider dataMaskBits
      */
-    #[DataProvider('dataMaskBits')]
-    public function testGetDatMaskBit(int $maskPattern, array $expected) : void
+    public function testGetDatMaskBit(int $maskPattern, array $expected): void
     {
         for ($x = 0; $x < 6; ++$x) {
             for ($y = 0; $y < 6; ++$y) {
@@ -96,7 +95,7 @@ class MaskUtilTest extends TestCase
         }
     }
 
-    public function testApplyMaskPenaltyRule1() : void
+    public function testApplyMaskPenaltyRule1(): void
     {
         $matrix = new ByteMatrix(4, 1);
         $matrix->set(0, 0, 0);
@@ -131,7 +130,7 @@ class MaskUtilTest extends TestCase
         $this->assertSame(4, MaskUtil::applyMaskPenaltyRule1($matrix));
     }
 
-    public function testApplyMaskPenaltyRule2() : void
+    public function testApplyMaskPenaltyRule2(): void
     {
         $matrix = new ByteMatrix(1, 1);
         $matrix->set(0, 0, 0);
@@ -164,7 +163,7 @@ class MaskUtilTest extends TestCase
         $this->assertSame(3 * 4, MaskUtil::applyMaskPenaltyRule2($matrix));
     }
 
-    public function testApplyMaskPenalty3() : void
+    public function testApplyMaskPenalty3(): void
     {
         // Horizontal 00001011101
         $matrix = new ByteMatrix(11, 1);
@@ -227,7 +226,7 @@ class MaskUtilTest extends TestCase
         $this->assertSame(40, MaskUtil::applyMaskPenaltyRule3($matrix));
     }
 
-    public function testApplyMaskPenaltyRule4() : void
+    public function testApplyMaskPenaltyRule4(): void
     {
         // Dark cell ratio = 0%
         $matrix = new ByteMatrix(1, 1);
@@ -251,4 +250,3 @@ class MaskUtilTest extends TestCase
         $this->assertSame(30, MaskUtil::applyMaskPenaltyRule4($matrix));
     }
 }
-

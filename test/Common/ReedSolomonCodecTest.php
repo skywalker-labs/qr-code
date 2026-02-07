@@ -1,16 +1,16 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace Skywalker\QrCodeTest\Common;
 
 use Skywalker\QrCode\Common\ReedSolomonCodec;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SplFixedArray;
 
 class ReedSolomonCodecTest extends TestCase
 {
-    public static function tabs() : array
+    public static function tabs(): array
     {
         return [
             [2, 0x7, 1, 1, 1],
@@ -23,8 +23,10 @@ class ReedSolomonCodecTest extends TestCase
         ];
     }
 
-    #[DataProvider('tabs')]
-    public function testCodec(int $symbolSize, int $generatorPoly, int $firstRoot, int $primitive, int $numRoots) : void
+    /**
+     * @dataProvider tabs
+     */
+    public function testCodec(int $symbolSize, int $generatorPoly, int $firstRoot, int $primitive, int $numRoots): void
     {
         mt_srand(0xdeadbeef);
 
@@ -93,4 +95,3 @@ class ReedSolomonCodecTest extends TestCase
         }
     }
 }
-

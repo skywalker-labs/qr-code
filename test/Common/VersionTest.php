@@ -1,16 +1,16 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace Skywalker\QrCodeTest\Common;
 
 use Skywalker\QrCode\Common\ErrorCorrectionLevel;
 use Skywalker\QrCode\Common\Version;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class VersionTest extends TestCase
 {
-    public static function versions() : array
+    public static function versions(): array
     {
         $array = [];
 
@@ -21,7 +21,7 @@ class VersionTest extends TestCase
         return $array;
     }
 
-    public static function decodeInformation() : array
+    public static function decodeInformation(): array
     {
         return [
             [7, 0x07c94],
@@ -34,7 +34,7 @@ class VersionTest extends TestCase
     }
 
     #[DataProvider('versions')]
-    public function testVersionForNumber(int $versionNumber, int $dimension) : void
+    public function testVersionForNumber(int $versionNumber, int $dimension): void
     {
         $version = Version::getVersionForNumber($versionNumber);
 
@@ -55,7 +55,7 @@ class VersionTest extends TestCase
     }
 
     #[DataProvider('versions')]
-    public function testGetProvisionalVersionForDimension(int $versionNumber, int $dimension) : void
+    public function testGetProvisionalVersionForDimension(int $versionNumber, int $dimension): void
     {
         $this->assertSame(
             $versionNumber,
@@ -63,12 +63,13 @@ class VersionTest extends TestCase
         );
     }
 
-    #[DataProvider('decodeInformation')]
-    public function testDecodeVersionInformation(int $expectedVersion, int $mask) : void
+    /**
+     * @dataProvider decodeInformation
+     */
+    public function testDecodeVersionInformation(int $expectedVersion, int $mask): void
     {
         $version = Version::decodeVersionInformation($mask);
         $this->assertNotNull($version);
         $this->assertSame($expectedVersion, $version->getVersionNumber());
     }
 }
-

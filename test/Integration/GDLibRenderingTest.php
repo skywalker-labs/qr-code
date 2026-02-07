@@ -14,17 +14,19 @@ use Skywalker\QrCode\Renderer\RendererStyle\Fill;
 use Skywalker\QrCode\Renderer\RendererStyle\Gradient;
 use Skywalker\QrCode\Renderer\RendererStyle\GradientType;
 use Skywalker\QrCode\Writer;
-use PHPUnit\Framework\Attributes\Group;
-use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\TestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
-#[Group('integration')]
+/**
+ * @group integration
+ */
 final class GDLibRenderingTest extends TestCase
 {
     use MatchesSnapshots;
 
-    #[RequiresPhpExtension('gd')]
+    /**
+     * @requires extension gd
+     */
     public function testGenericQrCode(): void
     {
         $renderer = new GDLibRenderer(400);
@@ -36,7 +38,9 @@ final class GDLibRenderingTest extends TestCase
         unlink($tempName);
     }
 
-    #[RequiresPhpExtension('gd')]
+    /**
+     * @requires extension gd
+     */
     public function testDifferentColorsQrCode(): void
     {
         $renderer = new GDLibRenderer(
@@ -61,7 +65,9 @@ final class GDLibRenderingTest extends TestCase
     }
 
 
-    #[RequiresPhpExtension('gd')]
+    /**
+     * @requires extension gd
+     */
     public function testFailsOnGradient(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -82,7 +88,9 @@ final class GDLibRenderingTest extends TestCase
         );
     }
 
-    #[RequiresPhpExtension('gd')]
+    /**
+     * @requires extension gd
+     */
     public function testFailsOnInvalidFormat(): void
     {
         $renderer = new GDLibRenderer(400, 4, 'tiff');
@@ -95,4 +103,3 @@ final class GDLibRenderingTest extends TestCase
         $writer->writeFile('Hello World!', $tempName);
     }
 }
-

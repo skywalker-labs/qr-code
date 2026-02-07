@@ -13,11 +13,12 @@ use Skywalker\QrCode\Renderer\RendererStyle\Gradient;
 use Skywalker\QrCode\Renderer\RendererStyle\GradientType;
 use Skywalker\QrCode\Renderer\RendererStyle\RendererStyle;
 use Skywalker\QrCode\Writer;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
-#[Group('integration')]
+/**
+ * @group integration
+ */
 final class SVGRenderingTest extends TestCase
 {
     use MatchesSnapshots;
@@ -46,8 +47,11 @@ final class SVGRenderingTest extends TestCase
             );
             $renderer = new ImageRenderer(
                 new RendererStyle(
-                    size: 400,
-                    fill: Fill::withForegroundGradient(
+                    400,
+                    4,
+                    null,
+                    null,
+                    Fill::withForegroundGradient(
                         new Rgb(255, 255, 255),
                         $gradient,
                         EyeFill::inherit(),
@@ -64,4 +68,3 @@ final class SVGRenderingTest extends TestCase
         }
     }
 }
-
