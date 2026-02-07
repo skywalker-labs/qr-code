@@ -64,6 +64,10 @@ final class GDLibRenderingTest extends TestCase
         $tempName = tempnam(sys_get_temp_dir(), 'test') . '.png';
         $writer->writeFile('Hello World!', $tempName);
 
+
+        if (!method_exists($this, 'assertMatchesImageSnapshot')) {
+            $this->markTestSkipped('assertMatchesImageSnapshot is not available');
+        }
         $this->assertMatchesImageSnapshot($tempName);
         unlink($tempName);
     }
