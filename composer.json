@@ -1,6 +1,7 @@
 {
     "name": "skywalker-labs/qr-code",
     "description": "A high-performance and highly customizable QR code generator for PHP, maintained by Skywalker Labs. Supports various output formats and provides a robust API for building advanced QR code solutions.",
+    "type": "library",
     "license": "MIT",
     "keywords": [
         "qr-code",
@@ -11,17 +12,29 @@
         "skywalker-labs",
         "high-performance"
     ],
-    "homepage": "https://skywalker-labs.com/",
+    "homepage": "https://github.com/skywalker-labs/qr-code",
     "support": {
         "issues": "https://github.com/skywalker-labs/qr-code/issues",
         "source": "https://github.com/skywalker-labs/qr-code"
     },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/ermradulsharma"
+        }
+    ],
     "authors": [
         {
             "name": "Skywalker Labs Team",
             "email": "skywalkerlknw@gmail.com",
             "homepage": "https://skywalker-labs.com/",
             "role": "Developer"
+        },
+        {
+            "name": "Mradul Sharma",
+            "email": "skywalkerlknw@gmail.com",
+            "homepage": "https://mradulsharma.vercel.app/",
+            "role": "Lead Developer"
         }
     ],
     "require": {
@@ -49,6 +62,11 @@
             "Skywalker\\QrCodeTest\\": "test/"
         }
     },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs",
+        "fix-style": "phpcbf"
+    },
     "config": {
         "allow-plugins": {
             "ocramius/package-versions": true,
@@ -61,9 +79,6 @@
             "/phpunit.xml.dist"
         ]
     },
-    "scripts": {
-        "test": "phpunit",
-        "check-style": "phpcs",
-        "fix-style": "phpcbf"
-    }
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
